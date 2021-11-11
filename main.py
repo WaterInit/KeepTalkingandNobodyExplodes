@@ -30,6 +30,13 @@ class MainMenu(QWidget):
         self.advanced_wires.setToolTip("Start Afvanced Wires") #Tool tip
         self.advanced_wires.move(100, 5)
 
+        # some start infos
+        self.label_last_dig_sn = QLabel("Last Digit of SN", self)
+        self.label_last_dig_sn.move(10, 180)
+        self.text_last_dig_sn = QLineEdit(self)
+        self.text_last_dig_sn.move(110, 180)
+        self.text_last_dig_sn.resize(20, 20)
+
         # Close Button
         self.closeButton = QPushButton(self)
         self.closeButton.setText("Close")          #text
@@ -41,7 +48,7 @@ class MainMenu(QWidget):
 
     def start_mystery(self, mysteryname):
         if mysteryname == "Wires":
-            self.myst = Wires()
+            self.myst = Wires(self.text_last_dig_sn.text())
             self.myst.show()
 
 

@@ -5,8 +5,9 @@ import sys
 
 
 class Wires(QWidget):
-    def __init__(self):
+    def __init__(self, text_last_dig_sn):
         super(Wires, self).__init__()
+        self.text_last_dig_sn = text_last_dig_sn
         self.initUI()
 
 
@@ -108,6 +109,10 @@ class Wires(QWidget):
         self.acceptButton.setToolTip("Solve Mystery")
         self.acceptButton.move(100, 150)
 
+        # show variables from before
+        label_red = QLabel("last Dig: " + str(self.text_last_dig_sn), self)
+        label_red.move(10, 230)
+
         # Close Button
         self.closeButton = QPushButton(self)
         self.closeButton.setText("Close")  # text
@@ -153,36 +158,109 @@ class Wires(QWidget):
             count_wires += 1
         print("Wires: " + str(count_wires))
 
+        solve_text = "error"
         if (count_wires < 3) or (count_wires > 6):
             print("error. Can only be between 3-6 Wires. But you enter " + str(count_wires) + " Wires")
         elif count_wires is 3:
-            self.wires_3()
+            solve_text = self.wires_3()
+        elif count_wires is 4:
+            solve_text = self.wires_4()
+
+        self.label_answer.setText(solve_text)
+
+    def wires_4(self):
+        print("4 Wires")
+        # first
+        count_wires_red = 0
+        if self.wire_1_checkbox_red.isChecked():
+            count_wires_red += 1
+        if self.wire_2_checkbox_red.isChecked():
+            count_wires_red += 1
+        if self.wire_3_checkbox_red.isChecked():
+            count_wires_red += 1
+        if self.wire_4_checkbox_red.isChecked():
+            count_wires_red += 1
+        if self.wire_5_checkbox_red.isChecked():
+            count_wires_red += 1
+        if count_wires_red > 1:
+            if not (int(self.text_last_dig_sn) % 2 == 0):
+                return("cut the last red wire")
+        # second
+        if count_wires_red is 0:
+            if (self.wire_5_checkbox_yellow.isChecked()):
+                return ("Cut the first Wire")
+            elif not (self.wire_5_checkbox_blue.isChecked() or self.wire_5_checkbox_black.isChecked() or self.wire_5_checkbox_white.isChecked() or self.wire_5_checkbox_red.isChecked()):
+                if (self.wire_4_checkbox_yellow.isChecked()):
+                    return ("Cut the first Wire")
+                elif not (self.wire_4_checkbox_blue.isChecked() or self.wire_4_checkbox_black.isChecked() or self.wire_4_checkbox_white.isChecked() or self.wire_4_checkbox_red.isChecked()):
+                    if (self.wire_3_checkbox_yellow.isChecked()):
+                        return ("Cut the first Wire")
+        # third
+        count_wires_blue = 0
+        if self.wire_1_checkbox_blue.isChecked():
+            count_wires_blue += 1
+        if self.wire_2_checkbox_blue.isChecked():
+            count_wires_blue += 1
+        if self.wire_3_checkbox_blue.isChecked():
+            count_wires_blue += 1
+        if self.wire_4_checkbox_blue.isChecked():
+            count_wires_blue += 1
+        if self.wire_5_checkbox_blue.isChecked():
+            count_wires_blue += 1
+        if count_wires_blue is 1:
+            return("cut the last wire")
+        # fourth
+        count_wires_yellow = 0
+        if self.wire_1_checkbox_yellow.isChecked():
+            count_wires_yellow += 1
+        if self.wire_2_checkbox_yellow.isChecked():
+            count_wires_yellow += 1
+        if self.wire_3_checkbox_yellow.isChecked():
+            count_wires_yellow += 1
+        if self.wire_4_checkbox_yellow.isChecked():
+            count_wires_yellow += 1
+        if self.wire_5_checkbox_yellow.isChecked():
+            count_wires_yellow += 1
+        if count_wires_yellow > 1:
+            return("cut the last wire")
+        # fifth
+        return("cut the second wire")
+
+
 
     def wires_3(self):
         print("3 Wires")
+        # first line
         if not (self.wire_1_checkbox_red.isChecked() or \
                 self.wire_2_checkbox_red.isChecked() or \
                 self.wire_3_checkbox_red.isChecked() or \
                 self.wire_4_checkbox_red.isChecked() or \
                 self.wire_5_checkbox_red.isChecked()):
-            answer_text = ("Cut the second Wire")
-        elif (self.wire_5_checkbox_white.isChecked()):
-            answer_text = ("Cut the last Wire")
+            return("Cut the second Wire")
+        # second line
+        if (self.wire_5_checkbox_white.isChecked()):
+            return("Cut the last Wire")
+        elif not (self.wire_5_checkbox_blue.isChecked() or self.wire_5_checkbox_black.isChecked() or self.wire_5_checkbox_yellow.isChecked() or self.wire_5_checkbox_red.isChecked()):
+            if (self.wire_4_checkbox_white.isChecked()):
+                return("Cut the last Wire")
+            elif not (self.wire_4_checkbox_blue.isChecked() or self.wire_4_checkbox_black.isChecked() or self.wire_4_checkbox_yellow.isChecked() or self.wire_4_checkbox_red.isChecked()):
+                if (self.wire_3_checkbox_white.isChecked()):
+                    return("Cut the last Wire")
+        # third line
+        count_blue_wires = 0
+        if self.wire_1_checkbox_blue.isChecked():
+            count_blue_wires += 1
+        if self.wire_2_checkbox_blue.isChecked():
+            count_blue_wires += 1
+        if self.wire_3_checkbox_blue.isChecked():
+            count_blue_wires += 1
+        if self.wire_4_checkbox_blue.isChecked():
+            count_blue_wires += 1
+        if self.wire_5_checkbox_blue.isChecked():
+            count_blue_wires += 1
+        if count_blue_wires > 1:
+            return("Cut the last blue wire")
+        # fourth line
         else:
-            count_blue_wires = 0
-            if self.wire_1_checkbox_blue.isChecked():
-                count_blue_wires += 1
-            if self.wire_2_checkbox_blue.isChecked():
-                count_blue_wires += 1
-            if self.wire_3_checkbox_blue.isChecked():
-                count_blue_wires += 1
-            if self.wire_4_checkbox_blue.isChecked():
-                count_blue_wires += 1
-            if self.wire_5_checkbox_blue.isChecked():
-                count_blue_wires += 1
-            if count_blue_wires > 1:
-                answer_text = ("Cut the last blue wire")
-            else:
-                answer_text = ("Cut the last wire")
+            return("Cut the last wire")
 
-        self.label_answer.setText(answer_text)
