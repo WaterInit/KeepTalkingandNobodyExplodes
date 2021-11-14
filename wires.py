@@ -8,6 +8,7 @@ class Wires(QWidget):
     def __init__(self, text_last_dig_sn):
         super(Wires, self).__init__()
         self.text_last_dig_sn = text_last_dig_sn
+        self.setMinimumSize(400, 400)
         self.initUI()
 
 
