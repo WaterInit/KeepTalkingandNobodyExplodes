@@ -5,6 +5,12 @@ import sys
 
 from wires import Wires
 
+#######################################
+# Version 1 #
+# Verification Code: 241
+#######################################
+
+
 
 class MainMenu(QWidget):
     def __init__(self):

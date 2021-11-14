@@ -36,6 +36,7 @@ class Wires(QWidget):
         self.label_answer.move(10, 180)
         self.label_answer.resize(200, 40)
 
+
         # Wire 1
         self.wire_1 = QLabel("Wire 1", self)
         self.wire_1.move(10, 30)
@@ -49,6 +50,8 @@ class Wires(QWidget):
         self.wire_1_checkbox_yellow.move(175, 30)
         self.wire_1_checkbox_black = QCheckBox("", self)
         self.wire_1_checkbox_black.move(212, 30)
+
+
         # Wire 2
         self.wire_2 = QLabel("Wire 2", self)
         self.wire_2.move(10, 50)
@@ -101,6 +104,19 @@ class Wires(QWidget):
         self.wire_5_checkbox_yellow.move(175, 110)
         self.wire_5_checkbox_black = QCheckBox("", self)
         self.wire_5_checkbox_black.move(212, 110)
+        # Wire 6
+        self.wire_6 = QLabel("Wire 6", self)
+        self.wire_6.move(10, 130)
+        self.wire_6_checkbox_red = QCheckBox("", self)
+        self.wire_6_checkbox_red.move(60, 130)
+        self.wire_6_checkbox_white = QCheckBox("", self)
+        self.wire_6_checkbox_white.move(100, 130)
+        self.wire_6_checkbox_blue = QCheckBox("", self)
+        self.wire_6_checkbox_blue.move(138, 130)
+        self.wire_6_checkbox_yellow = QCheckBox("", self)
+        self.wire_6_checkbox_yellow.move(175, 130)
+        self.wire_6_checkbox_black = QCheckBox("", self)
+        self.wire_6_checkbox_black.move(212, 130)
 
         # Accept Button
         self.acceptButton = QPushButton(self)
@@ -124,143 +140,221 @@ class Wires(QWidget):
 
     def solve(self):
         print("Solve Mystery")
+
+        # array
+        self.wire_checked = [0, 0, 0, 0, 0, 0]  # red = 16, white = 8, blue = 4, yellow = 2, black = 1
+        # wire 1
+        if (self.wire_1_checkbox_red.isChecked()):
+            self.wire_checked[0] += 16
+        if (self.wire_1_checkbox_white.isChecked()):
+            self.wire_checked[0] += 8
+        if (self.wire_1_checkbox_blue.isChecked()):
+            self.wire_checked[0] += 4
+        if (self.wire_1_checkbox_yellow.isChecked()):
+            self.wire_checked[0] += 2
+        if (self.wire_1_checkbox_black.isChecked()):
+            self.wire_checked[0] += 1
+        # wire 2
+        if (self.wire_2_checkbox_red.isChecked()):
+            self.wire_checked[1] += 16
+        if (self.wire_2_checkbox_white.isChecked()):
+            self.wire_checked[1] += 8
+        if (self.wire_2_checkbox_blue.isChecked()):
+            self.wire_checked[1] += 4
+        if (self.wire_2_checkbox_yellow.isChecked()):
+            self.wire_checked[1] += 2
+        if (self.wire_2_checkbox_black.isChecked()):
+            self.wire_checked[1] += 1
+        # wire 3
+        if (self.wire_3_checkbox_red.isChecked()):
+            self.wire_checked[2] += 16
+        if (self.wire_3_checkbox_white.isChecked()):
+            self.wire_checked[2] += 8
+        if (self.wire_3_checkbox_blue.isChecked()):
+            self.wire_checked[2] += 4
+        if (self.wire_3_checkbox_yellow.isChecked()):
+            self.wire_checked[2] += 2
+        if (self.wire_3_checkbox_black.isChecked()):
+            self.wire_checked[2] += 1
+        # wire 4
+        if (self.wire_4_checkbox_red.isChecked()):
+            self.wire_checked[3] += 16
+        if (self.wire_4_checkbox_white.isChecked()):
+            self.wire_checked[3] += 8
+        if (self.wire_4_checkbox_blue.isChecked()):
+            self.wire_checked[3] += 4
+        if (self.wire_4_checkbox_yellow.isChecked()):
+            self.wire_checked[3] += 2
+        if (self.wire_4_checkbox_black.isChecked()):
+            self.wire_checked[3] += 1
+        # wire 5
+        if (self.wire_5_checkbox_red.isChecked()):
+            self.wire_checked[4] += 16
+        if (self.wire_5_checkbox_white.isChecked()):
+            self.wire_checked[4] += 8
+        if (self.wire_5_checkbox_blue.isChecked()):
+            self.wire_checked[4] += 4
+        if (self.wire_5_checkbox_yellow.isChecked()):
+            self.wire_checked[4] += 2
+        if (self.wire_5_checkbox_black.isChecked()):
+            self.wire_checked[4] += 1
+        # wire 6
+        if (self.wire_6_checkbox_red.isChecked()):
+            self.wire_checked[5] += 16
+        if (self.wire_6_checkbox_white.isChecked()):
+            self.wire_checked[5] += 8
+        if (self.wire_6_checkbox_blue.isChecked()):
+            self.wire_checked[5] += 4
+        if (self.wire_6_checkbox_yellow.isChecked()):
+            self.wire_checked[5] += 2
+        if (self.wire_6_checkbox_black.isChecked()):
+            self.wire_checked[5] += 1
+
         # count Wires
         count_wires = 0
-        if(self.wire_1_checkbox_red.isChecked() or \
-                self.wire_1_checkbox_white.isChecked() or \
-                self.wire_1_checkbox_blue.isChecked() or\
-                self.wire_1_checkbox_yellow.isChecked() or \
-                self.wire_1_checkbox_black.isChecked()):
-            count_wires += 1
-        if (self.wire_2_checkbox_red.isChecked() or \
-                self.wire_2_checkbox_white.isChecked() or \
-                self.wire_2_checkbox_blue.isChecked() or \
-                self.wire_2_checkbox_yellow.isChecked() or \
-                self.wire_2_checkbox_black.isChecked()):
-            count_wires += 1
-        if (self.wire_3_checkbox_red.isChecked() or \
-                self.wire_3_checkbox_white.isChecked() or \
-                self.wire_3_checkbox_blue.isChecked() or \
-                self.wire_3_checkbox_yellow.isChecked() or \
-                self.wire_3_checkbox_black.isChecked()):
-            count_wires += 1
-        if (self.wire_4_checkbox_red.isChecked() or \
-                self.wire_4_checkbox_white.isChecked() or \
-                self.wire_4_checkbox_blue.isChecked() or \
-                self.wire_4_checkbox_yellow.isChecked() or \
-                self.wire_4_checkbox_black.isChecked()):
-            count_wires += 1
-        if (self.wire_5_checkbox_red.isChecked() or \
-                self.wire_5_checkbox_white.isChecked() or \
-                self.wire_5_checkbox_blue.isChecked() or \
-                self.wire_5_checkbox_yellow.isChecked() or \
-                self.wire_5_checkbox_black.isChecked()):
-            count_wires += 1
+        for wire in self.wire_checked:
+            if wire > 0:
+                count_wires += 1
+
         print("Wires: " + str(count_wires))
 
         solve_text = "error"
         if (count_wires < 3) or (count_wires > 6):
             print("error. Can only be between 3-6 Wires. But you enter " + str(count_wires) + " Wires")
-        elif count_wires is 3:
+        elif count_wires == 3:
             solve_text = self.wires_3()
-        elif count_wires is 4:
+        elif count_wires == 4:
             solve_text = self.wires_4()
+        elif count_wires == 5:
+            solve_text = self.wires_5()
+        elif count_wires == 6:
+            solve_text = self.wires_6()
 
         self.label_answer.setText(solve_text)
 
+
+        #self.wire_checked = [0, 0, 0, 0, 0, 0]  # red = 16, white = 8, blue = 4, yellow = 2, black = 1
+
+    def wires_6(self):
+        print("6 Wires")
+        print(self.wire_checked)
+        # first
+        count_wires_yellow = 0
+        for wire in self.wire_checked:
+            if wire == 2:
+                count_wires_yellow += 1
+        if not (int(self.text_last_dig_sn) % 2 == 0):
+            if count_wires_yellow == 0:
+                return("cut the third wire")
+        # second
+        count_wires_white = 0
+        for wire in self.wire_checked:
+            if wire == 8:
+                count_wires_white += 1
+        if (count_wires_yellow == 1) and (count_wires_white > 1):
+            return ("cut the fourth wire")
+        # third
+        count_wires_red = 0
+        for wire in self.wire_checked:
+            if wire == 16:
+                count_wires_red += 1
+        if count_wires_red == 0:
+            return ("cut the last wire")
+        # fourth
+        return ("cut the fourth wire")
+
+    def wires_5(self):
+        print("5 Wires")
+        print(self.wire_checked)
+        # first
+        if not (int(self.text_last_dig_sn) % 2 == 0):
+            for wire in reversed(self.wire_checked):  # go through loop from last element to first
+                if wire > 0:  # found last wire
+                    if wire == 1:  # last wire is black
+                        return ("cut the fourth wire")
+                    else:  # stop loop if last wire is not white
+                        break
+        # second
+        count_wires_red = 0
+        for wire in self.wire_checked:
+            if wire == 16:
+                count_wires_red += 1
+        count_wires_yellow = 0
+        for wire in self.wire_checked:
+            if wire == 2:
+                count_wires_yellow += 1
+        if (count_wires_red == 1) and (count_wires_yellow > 1):
+            return("cut the first wire")
+        # third
+        count_wires_black = 0
+        for wire in self.wire_checked:
+            if wire == 1:
+                count_wires_black += 1
+        if count_wires_black == 0:
+            return("cut the second wire")
+        # fourth
+        return("cut the first wire")
+
     def wires_4(self):
         print("4 Wires")
+        print(self.wire_checked)
         # first
         count_wires_red = 0
-        if self.wire_1_checkbox_red.isChecked():
-            count_wires_red += 1
-        if self.wire_2_checkbox_red.isChecked():
-            count_wires_red += 1
-        if self.wire_3_checkbox_red.isChecked():
-            count_wires_red += 1
-        if self.wire_4_checkbox_red.isChecked():
-            count_wires_red += 1
-        if self.wire_5_checkbox_red.isChecked():
-            count_wires_red += 1
+        for wire in self.wire_checked:
+            if wire == 16:
+                count_wires_red += 1
         if count_wires_red > 1:
             if not (int(self.text_last_dig_sn) % 2 == 0):
                 return("cut the last red wire")
         # second
-        if count_wires_red is 0:
-            if (self.wire_5_checkbox_yellow.isChecked()):
-                return ("Cut the first Wire")
-            elif not (self.wire_5_checkbox_blue.isChecked() or self.wire_5_checkbox_black.isChecked() or self.wire_5_checkbox_white.isChecked() or self.wire_5_checkbox_red.isChecked()):
-                if (self.wire_4_checkbox_yellow.isChecked()):
-                    return ("Cut the first Wire")
-                elif not (self.wire_4_checkbox_blue.isChecked() or self.wire_4_checkbox_black.isChecked() or self.wire_4_checkbox_white.isChecked() or self.wire_4_checkbox_red.isChecked()):
-                    if (self.wire_3_checkbox_yellow.isChecked()):
-                        return ("Cut the first Wire")
+        if count_wires_red == 0:
+            for wire in reversed(self.wire_checked):  # go through loop from last element to first
+                if wire > 0:  # found last wire
+                    if wire == 2:  # last wire is white
+                        return ("cut the first wire")
+                    else:  # stop loop if last wire is not white
+                        break
         # third
         count_wires_blue = 0
-        if self.wire_1_checkbox_blue.isChecked():
-            count_wires_blue += 1
-        if self.wire_2_checkbox_blue.isChecked():
-            count_wires_blue += 1
-        if self.wire_3_checkbox_blue.isChecked():
-            count_wires_blue += 1
-        if self.wire_4_checkbox_blue.isChecked():
-            count_wires_blue += 1
-        if self.wire_5_checkbox_blue.isChecked():
-            count_wires_blue += 1
-        if count_wires_blue is 1:
-            return("cut the last wire")
+        for wire in self.wire_checked:
+            if wire == 4:
+                count_wires_blue += 1
+        if count_wires_blue == 1:
+            return("cut the first wire")
         # fourth
         count_wires_yellow = 0
-        if self.wire_1_checkbox_yellow.isChecked():
-            count_wires_yellow += 1
-        if self.wire_2_checkbox_yellow.isChecked():
-            count_wires_yellow += 1
-        if self.wire_3_checkbox_yellow.isChecked():
-            count_wires_yellow += 1
-        if self.wire_4_checkbox_yellow.isChecked():
-            count_wires_yellow += 1
-        if self.wire_5_checkbox_yellow.isChecked():
-            count_wires_yellow += 1
+        for wire in self.wire_checked:
+            if wire == 2:
+                count_wires_yellow += 1
         if count_wires_yellow > 1:
             return("cut the last wire")
         # fifth
         return("cut the second wire")
 
 
-
     def wires_3(self):
         print("3 Wires")
         # first line
-        if not (self.wire_1_checkbox_red.isChecked() or \
-                self.wire_2_checkbox_red.isChecked() or \
-                self.wire_3_checkbox_red.isChecked() or \
-                self.wire_4_checkbox_red.isChecked() or \
-                self.wire_5_checkbox_red.isChecked()):
+        count_wires_red = 0
+        for wire in self.wire_checked:
+            if wire == 16:
+                count_wires_red += 1
+        if count_wires_red == 0:
             return("Cut the second Wire")
         # second line
-        if (self.wire_5_checkbox_white.isChecked()):
-            return("Cut the last Wire")
-        elif not (self.wire_5_checkbox_blue.isChecked() or self.wire_5_checkbox_black.isChecked() or self.wire_5_checkbox_yellow.isChecked() or self.wire_5_checkbox_red.isChecked()):
-            if (self.wire_4_checkbox_white.isChecked()):
-                return("Cut the last Wire")
-            elif not (self.wire_4_checkbox_blue.isChecked() or self.wire_4_checkbox_black.isChecked() or self.wire_4_checkbox_yellow.isChecked() or self.wire_4_checkbox_red.isChecked()):
-                if (self.wire_3_checkbox_white.isChecked()):
-                    return("Cut the last Wire")
+        for wire in reversed(self.wire_checked):  # go through loop from last element to first
+            if wire > 0:  # found last wire
+                if wire == 8:  # last wire is white
+                    return ("cut the last wire")
+                else:  # stop loop if last wire is not white
+                    break
         # third line
         count_blue_wires = 0
-        if self.wire_1_checkbox_blue.isChecked():
-            count_blue_wires += 1
-        if self.wire_2_checkbox_blue.isChecked():
-            count_blue_wires += 1
-        if self.wire_3_checkbox_blue.isChecked():
-            count_blue_wires += 1
-        if self.wire_4_checkbox_blue.isChecked():
-            count_blue_wires += 1
-        if self.wire_5_checkbox_blue.isChecked():
-            count_blue_wires += 1
+        for wire in self.wire_checked:
+            if wire == 4:
+                count_blue_wires += 1
         if count_blue_wires > 1:
             return("Cut the last blue wire")
         # fourth line
-        else:
-            return("Cut the last wire")
+        return("Cut the last wire")
 
