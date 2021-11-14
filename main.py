@@ -5,6 +5,7 @@ import sys
 
 from wires import Wires
 from button import Button
+from keypad import Keypad
 
 #######################################
 # Version 1 #
@@ -38,6 +39,13 @@ class MainMenu(QWidget):
         self.button.clicked.connect(lambda: self.start_mystery("Button"))
         self.button.setToolTip("Start Button") #Tool tip
         self.button.move(135, 5)
+        # Keypad
+        self.keypad = QPushButton(self)
+        self.keypad.setText("Keypad")
+        self.keypad.setIcon(QIcon("close.png")) #icon
+        self.keypad.clicked.connect(lambda: self.start_mystery("Keypad"))
+        self.keypad.setToolTip("Start Keypad") #Tool tip
+        self.keypad.move(220, 5)
         # Wires
         self.wires = QPushButton(self)
         self.wires.setText("Wires")          #text
@@ -89,6 +97,9 @@ class MainMenu(QWidget):
             self.myst.show()
         elif mysteryname == "Button":
             self.myst = Button(self.text_count_batteries.text(), lid_indicators)
+            self.myst.show()
+        elif mysteryname == "Keypad":
+            self.myst = Keypad()
             self.myst.show()
 
 
