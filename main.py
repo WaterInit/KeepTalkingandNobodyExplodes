@@ -6,6 +6,7 @@ import sys
 from wires import Wires
 from button import Button
 from keypad import Keypad
+from memory import Memory
 
 #######################################
 # Version 1 #
@@ -53,6 +54,13 @@ class MainMenu(QWidget):
         self.wires.clicked.connect(lambda: self.start_mystery("Wires"))
         self.wires.setToolTip("Start Wires") #Tool tip
         self.wires.move(5, 35)
+        # Memory
+        self.memory = QPushButton(self)
+        self.memory.setText("Memory")          #text
+        self.memory.setIcon(QIcon("close.png")) #icon
+        self.memory.clicked.connect(lambda: self.start_mystery("Memory"))
+        self.memory.setToolTip("Start Memory") #Tool tip
+        self.memory.move(90, 35)
 
         ## some start infos ##
         # last digit even or odd
@@ -100,6 +108,9 @@ class MainMenu(QWidget):
             self.myst.show()
         elif mysteryname == "Keypad":
             self.myst = Keypad()
+            self.myst.show()
+        elif mysteryname == "Memory":
+            self.myst = Memory()
             self.myst.show()
 
 
