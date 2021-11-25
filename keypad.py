@@ -149,4 +149,3 @@ class Keypad(QWidget):
                 self.result_6.setText((row[5].text()))
                 self.result_7.setText((row[6].text()))
                 break;
-
